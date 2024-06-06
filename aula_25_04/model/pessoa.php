@@ -1,9 +1,12 @@
 <?php
-require_once '../controller/conexao.php'; //INCLUI O ARQUIVO QUE CONTÉM A CLASSE CONEXAO//
- 
+
+// INCLUI O ARQUIVO QUE CONTÉM A CLASSE CONEXAO//
+require_once '../controller/conexao.php';
+
+ // CRIAÇÃO DA CLASSE PESSOA//
  class pessoa{
 
-    //DECLARAÇÃO DOS ATRIBUTOS PRIVADOS DA CLASSE//
+    // DECLARAÇÃO DOS ATRIBUTOS PRIVADOS DA CLASSE//
     private $id;
     private $nome;
     private $endereco;
@@ -13,12 +16,12 @@ require_once '../controller/conexao.php'; //INCLUI O ARQUIVO QUE CONTÉM A CLASS
     private $estado;
     private $telefone;
     private $celular;
-    private $conexao;
+    private $conexao;  // OBJETO DA CLASSE CONEXAO PARA ARMAZENAR A CONEXÃO COM O BANCO DE DADOS//
 
 
-    //MÉTODOS GETTERS E SETTERS PARA CADA ATRIBUTO//
-    //OS MÉTODOS GETTERS RETORNAM O VALOR DOS ATRIBUTOS//
-    //OS MÉTODOS SETTERS ATRIBUEM VALORES AOS ATRIBUTOS//
+    // MÉTODOS GETTERS E SETTERS PARA CADA ATRIBUTO//
+    // OS MÉTODOS GETTERS RETORNAM O VALOR DOS ATRIBUTOS//
+    // OS MÉTODOS SETTERS ATRIBUEM VALORES AOS ATRIBUTOS//
     public function getId(){
         return $this->id;
     }
@@ -81,10 +84,12 @@ require_once '../controller/conexao.php'; //INCLUI O ARQUIVO QUE CONTÉM A CLASS
     public function setCelular($celular){
         $this->celular = $celular;
     }
-    
+
+
+    // CONSTRUTOR DA CALSSE PESSOA//
     public function __construct(){
         //CRIA UMA NOVA INSTÂNCIA DA CLASSE CONEXAO PARA ESTABELECER A CONEXÃO COM O BANCO DE DADOS//
-        $this->conexao = new Conexao();
+        $this->conexao = new Conexao(); 
     }
 
     //MÉTODO PARA INSERIR UMA NOVA PESSOA NO BANCO DE DADOS//
@@ -95,6 +100,7 @@ require_once '../controller/conexao.php'; //INCLUI O ARQUIVO QUE CONTÉM A CLASS
         $stmt = $this->conexao->getConexao()->prepare($sql);
         //LIGA OS PARÂMETROS DA DECLARAÇÃO SQL COM OS ATRIBUTOS DA CLASSE//
         $stmt->bind_param('ssssssss', $this->nome, $this->endereco, $this->bairro, $this->cep, $this->cidade, $this->estado, $this->telefone, $this->celular);
+        // EXECUTA A DECLARAÇÃO SQL//
         return $stmt->execute();
 
     }
