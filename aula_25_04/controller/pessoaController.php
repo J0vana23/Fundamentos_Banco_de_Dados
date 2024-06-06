@@ -13,7 +13,7 @@ class pessoaController{
     }
 
     public function inserir(){
-        // DEFINE OS VALORES DAS PROPRIEDADES DA PESSOA COM BASE NOS DADOS RECEBIDOS VIA POST
+        // DEFINE OS VALORES DAS PROPRIEDADES DA PESSOA COM BASE NOS DADOS RECEBIDOS VIA HTML//
         $this-> pessoa->setNome($_POST['nome']);
         $this-> pessoa->setEndereco($_POST['endereco']);
         $this-> pessoa->setBairro($_POST['bairro']);
